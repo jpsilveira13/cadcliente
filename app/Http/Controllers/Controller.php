@@ -27,7 +27,28 @@ class Controller extends BaseController
             $usuario->senha = $senha1;
             $usuario->save();
 
-            return redirect(cadcliente/visualizar);
+            return redirect('cadcliente/visualizar');
+        }else{
+            return 'Senhas nao conferem';
+        }
+    }
+
+    public function alterar(Request $request)
+    {
+        $id = $request->input('id');
+        $nome = $request->input('nome');
+        $email = $request->input('email');
+        $senha1 = $request->input('senha1');
+        $senha2 = $request->input('senha2');
+
+        if($senha1 == $senha2){
+            $usuario = Usuario::find($id);
+            $usuario->nome = $nome;
+            $usuario->email = $email;
+            $usuario->senha = $senha1;
+            $usuario->save();
+
+            return redirect('cadcliente/visualizar');
         }else{
             return 'Senhas nao conferem';
         }
@@ -37,5 +58,18 @@ class Controller extends BaseController
     {
         $usuarios = Usuario::all();
         return view('viscliente')->with('usuarios', $usuarios);
+    }
+
+    public function editar($id)
+    {
+        $usuario = Usuario::find($id);
+        return view('altcliente')->with('usuario', $usuario);
+    }
+
+
+    public function excluir($id)
+    {
+        Usuario::where('id', $id)->delete();
+        return redirect('cadcliente/visualizar');
     }
 }

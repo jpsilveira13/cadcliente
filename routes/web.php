@@ -24,10 +24,12 @@ Route::group(['prefix' => 'cadcliente'], function () {
 
     Route::post('salvar', 'Controller@salvar');
 
+    Route::post('alterar', 'Controller@alterar');
+
     Route::get('visualizar', 'Controller@visualizar');
 
-    Route::get('excluir/{id}', function ($id) {
-        Usuario::where('id', $id)->delete();
-    });
+    Route::get('editar/{id}', 'Controller@editar');
+
+    Route::get('excluir/{id}', 'Controller@excluir');
 });
 

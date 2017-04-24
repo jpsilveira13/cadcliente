@@ -79,19 +79,19 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Cadastro Cliente
+            Editar Cliente
         </div>
-        <form action="cadcliente/salvar" method="POST">
+        <form action="../alterar" method="POST">
             {{ csrf_field() }}
-            <h4>Nome</h4><input type="text" name="nome" placeholder="Digite o nome"><br>
-            <h4>Email</h4><input type="text" name="email" placeholder="Digite o email"><br>
-            <h4>Senha</h4><input type="password" name="senha1" placeholder="Digite a senha"><br>
-            <h4>Repita a senha</h4><input type="password" name="senha2" placeholder="Repita a senha"><br><br>
+            <h4>ID: </h4>{{ $usuario->id }}<input type="hidden" name="id" value="{{ $usuario->id }}">
+            <h4>Nome</h4><input type="text" name="nome" value="{{ $usuario->nome }}"><br>
+            <h4>Email</h4><input type="text" name="email" value="{{ $usuario->email }}"><br>
+            <h4>Senha</h4><input type="password" name="senha1"><br>
+            <h4>Repita a senha</h4><input type="password" name="senha2"><br><br>
             <input type="submit" value="Salvar Cliente">
-            <input type="button" value="Todos Clientes" onclick="location.href='{{ url('cadcliente/visualizar') }}'">
         </form>
-        </div>
     </div>
+</div>
 </div>
 </body>
 </html>

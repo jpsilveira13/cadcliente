@@ -14,12 +14,16 @@
     <style>
         html, body {
             background-color: #fff;
-            color: #636b6f;
+            color: #000000;
             font-family: 'Raleway', sans-serif;
             font-weight: 100;
             height: 100vh;
             margin: 0;
 
+        }
+
+        td, a{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         .full-height {
@@ -64,7 +68,6 @@
             margin-bottom: 30px;
         }
     </style>
-
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -83,15 +86,23 @@
         <div class="title m-b-md">
             Todos Clientes
         </div>
-        @foreach ($usuarios as $u)
-            <form action="excluir/{{ $u->id }}">
-                <h4>Nome {{ $u->nome }}</h4><br>
-                <h4>Email {{ $u->email }}</h4><br>
-                <h4>Senha {{ $u->senha }}</h4><br>
-                <input type="submit" value="Excluir Cliente">
-                <h4>----------------------------</h4><br><br>
-            </form>
-        @endforeach
+        <input type="button" value="Cadastrar Clientes" onclick="location.href='{{ url('/cadcliente') }}'"><br><br>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+            @foreach ($usuarios as $u)
+                <tr>
+                    <td>{{ $u->id }}</td>
+                    <td>{{ $u->nome }}</td>
+                    <td>{{ $u->email }}</td>
+                    <td><a href="editar/{{ $u->id }}">Alterar</a></td>
+                    <td><a href="excluir/{{ $u->id }}">Excluir</a></td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 
 </div>
